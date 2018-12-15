@@ -10,18 +10,15 @@ $(document).ready(function () {
     };
     firebase.initializeApp(config);
     // setup google authentication so the user must use this to view page
-    var googleSignin = function(){
-        var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithRedirect(provider);
-    };
-    firebase.auth().getRedirectResult().then(function (result) {
-        if (result.credential) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-        }
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-    }).catch(function (error) {
+        // ...
+      }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -29,7 +26,8 @@ $(document).ready(function () {
         var email = error.email;
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
-    });
+        // ...
+      });
 
 
     // variables to pass and recieve infromatio from/to firebase in the click event and updateTime functions below
@@ -101,8 +99,6 @@ $(document).ready(function () {
     })
     // loads train info from firebase on page load
     updateTime()
-    // sign in function
-    googleSignin()
     // updates the information on the page every minute
     setInterval(function () { $(".train-info").remove(), updateTime(); }, 60000)
 });
