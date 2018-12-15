@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     // a mouse over function add a remove train and its info from the page and firebase
     $(document).on("mouseenter", ".train-info", function () {
-        $(this).append("<a class='remove btn-floating btn-small waves-effect waves-light blue right'><i  class=' material-icons'>remove_circle_outline</i></a>")
+        $(this).append("<a class='remove btn-floating btn-small waves-effect waves-light green darken-4 right'><i  class=' material-icons'>remove_circle_outline</i></a>")
         var current = this
         var currentDb = database.ref($(this).attr("key"))
         $(".remove").on("click", function () {
