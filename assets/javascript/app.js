@@ -28,12 +28,7 @@ $(document).ready(function () {
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
       });
-      //signout function
-      firebase.auth().signOut().then(function() {
-        
-      }).catch(function(error) {
-        console.log("sign-out error")
-      });
+     
 
       // variables to pass and recieve infromatio from/to firebase in the click event and updateTime functions below
     var database = firebase.database();
