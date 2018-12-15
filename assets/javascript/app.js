@@ -11,7 +11,7 @@ $(document).ready(function () {
     firebase.initializeApp(config);
     // setup google authentication so the user must use this to view page
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    
     firebase.auth().signInWithPopup(provider).then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
